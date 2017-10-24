@@ -9,9 +9,11 @@ public class EngineController : MonoBehaviour {
     private EngineView engView;
     private Engine engine;
     public string axis;
+	private Rigidbody rb;
 
     // Use this for initialization
     void Start () {
+		rb = GetComponentInParent<Rigidbody> ();
         engine = new Engine();
         engView = GetComponent<EngineView>();
         engView.UpdatePower(engine.GetPower());
@@ -19,16 +21,15 @@ public class EngineController : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if(axis == "Forward")
         {
-            transform.parent.Translate(engine.GetPower() * Vector3.forward * Time.deltaTime);
+			rb.AddForce(engine.GetPower() * transform.forward);
         }
         if (axis == "Backward")
         {
-            float changeToMinus = 0 - engine.GetPower();
 
-            transform.parent.Translate(changeToMinus * Vector3.forward * Time.deltaTime);
+			rb.AddForce(-engine.GetPower() * transform.forward);
         }
     }
 
