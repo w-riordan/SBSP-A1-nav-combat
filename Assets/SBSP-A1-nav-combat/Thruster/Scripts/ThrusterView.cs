@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestShipTruster : MonoBehaviour {
+public class ThrusterView : MonoBehaviour {
 
 	public ThrusterController fl, fr, rl, rr;
 
