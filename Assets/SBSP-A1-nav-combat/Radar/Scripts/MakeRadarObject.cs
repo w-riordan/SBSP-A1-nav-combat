@@ -18,6 +18,8 @@ public class MakeRadarObject : MonoBehaviour {
 
     void OnDostroy()
     {
-        Radar.RemoveRadarObject(this.gameObject);
+        Radar.RemoveRadarObject(this.gameObject); 
     }
+
+
 }
