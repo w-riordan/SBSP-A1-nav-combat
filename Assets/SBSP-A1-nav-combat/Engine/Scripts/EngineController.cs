@@ -35,13 +35,14 @@ public class EngineController : MonoBehaviour {
 
     //TrunOnEngine method
     //sets power of the engine to zero and isOn to true
-    public void TurnOnEngine()
+	public void TurnOnEngine()
     {
         if (!engine.GetIsOn())
         {
             engine.SetPower(0);
             engine.SetIsOn(true);
             engView.UpdateEngineState(engine.GetIsOn());
+
         }
         else
         {
@@ -52,7 +53,7 @@ public class EngineController : MonoBehaviour {
 
     //TrunOffEngine method
     //sets power of the engine to zero and isOn to true
-    public void TurnOffEngine()
+	public void TurnOffEngine()
     {
         if (engine.GetIsOn())
         {
