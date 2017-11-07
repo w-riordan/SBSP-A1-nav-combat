@@ -7,7 +7,6 @@ public class Engine
     //initializing variables for the engine
     private int energy;
     public float power = 0;
-    private int velocity;
     private bool isOn = false;
 
     //SetEnergy method
@@ -32,18 +31,6 @@ public class Engine
     public float GetPower()
     {
         return this.power;
-    }
-
-    //SetVelocity method
-    public void SetVelocity(int velocity)
-    {
-        this.velocity = velocity;
-    }
-
-    //GetVelocity method
-    public int GetVelocity()
-    {
-        return this.velocity;
     }
 
     //GetIsOn method

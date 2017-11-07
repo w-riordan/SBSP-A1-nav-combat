@@ -13,7 +13,7 @@ public class RadarObject
 public class Radar : MonoBehaviour {
 
     public Transform playerPos; //position of player
-    float mapScale = 2.0f; //scale radar size
+    float mapScale = 10.0f; //scale radar size
 
     public static List<RadarObject> radObjects = new List<RadarObject>();
 
