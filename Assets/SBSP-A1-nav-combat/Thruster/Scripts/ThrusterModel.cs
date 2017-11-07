@@ -2,7 +2,7 @@
 public class ThrusterModel{
 	//The power of the thruster
 	public float power = 100;
-	public float strength = .1f;
+	public float strength = 5f;
 
 	//whether the truster is currently on
 	public bool on = false;
