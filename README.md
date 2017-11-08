@@ -1,15 +1,15 @@
-# codename-spongebob__
-## Space Bridge Simulator Project (SPBS - codename SpongeBobSquarePants...)__
-### Year4-Games-Development/SBSP-A1-nav-combat__
+# codename-spongebob <br />
+## Space Bridge Simulator Project (SPBS - codename SpongeBobSquarePants...)<br />
+### Year4-Games-Development/SBSP-A1-nav-combat <br />
+<br />
+**Team Navigation & Combat:** <br />
+**Jakub Badacz** - Engines & Autopilot<br />
+**Kris Szurowski** - Cannonballs <br />
+**Wayne Riordan** - Thrusters & Autopilot <br />
+**Stephen Byrne** - Radar <br />
+**David Cushen** - Shields <br />
+**Ross Kennedy** - Rockets & Networking <br />
 
-**Team Navigation & Combat:**__
-**Jakub Badacz** - Engines & Autopilot__
-**Kris Szurowski** - Cannonballs__
-**Wayne Riordan** - Thrusters & Autopilot__
-**Stephen Byrne** - Radar__
-**David Cushen** - Shields__
-**Ross Kennedy** - Rockets & Networking__
-__
-To see the latest working updates:__
-Go to the **"dev"** branch -> Assets -> SBSP-A1-nav-combat__
-Just run the **MainScene.unity**__
+To see the latest working updates: <br />
+Go to the **"dev"** branch -> Assets -> SBSP-A1-nav-combat <br />
+Just run the **MainScene.unity**
