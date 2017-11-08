@@ -9,21 +9,30 @@ public class ThrusterController : MonoBehaviour {
 	private Rigidbody rbody;
 	void Start () {
 		//Create new ThrusterModel object
-		truster = new ThrusterModel ();
+		if (truster == null) {
+			truster = new ThrusterModel ();
+		}
 		//Get the Rigidbody of the shipobject(Parent object)
-		rbody =GetComponentsInParent<Rigidbody> ()[0];
+		rbody =GetComponentInParent<Rigidbody> ();
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 		//If the thruster is switched on
-		if (truster.isOn()) {
+		if (truster.isOn ()) {
 			//Apply force in the direction the thrusters facing at position(Fire the thruster)
-			rbody.AddForceAtPosition((-transform.forward) * truster.GetForce(), transform.position);
+			rbody.AddForceAtPosition ((-transform.forward) * truster.GetForce (), transform.position);
 			//
 			truster.setOn (false);
 		}
 	}
 
+	public void FireThruster(){
+		truster.setOn (true);
+	}
+
+	public void setPower(float value){
+		truster.setPower (value);
+	}
 
 }
