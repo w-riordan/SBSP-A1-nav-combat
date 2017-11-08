@@ -3,4 +3,6 @@ Space Bridge Simulator Project (SPBS - codename SpongeBobSquarePants...)
 
 Year4-Games-Development/SBSP-A1-nav-combat
 
-Please go to the "dev" branch to see most updated files with the scene working.
+To see the lates working updates:
+Go to the "dev" branch -> Assets -> SBSP-A1-nav-combat
+Just run the MainScene.unity
