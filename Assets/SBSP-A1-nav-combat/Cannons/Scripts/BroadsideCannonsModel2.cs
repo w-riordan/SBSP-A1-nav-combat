@@ -51,6 +51,7 @@ public class BroadsideCannonsModel2 : MonoBehaviour {
 	public delegate void OnCannonThrustLevelChangeDelegate(float newVal);
 	public event OnCannonThrustLevelChangeDelegate OnCannonThrustLevelChange;
 
+
 	private float cannonBallDistance = 10f;
 	public float CannonBallDistance{
 		get {return cannonBallDistance;}

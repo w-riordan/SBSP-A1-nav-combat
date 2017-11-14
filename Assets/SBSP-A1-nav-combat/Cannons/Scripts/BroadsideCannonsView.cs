@@ -36,7 +36,7 @@ public class BroadsideCannonsView : MonoBehaviour {
 		cannonsController = FindObjectOfType<CannonsController> ();
 		CannonsLevelDisplay.text = broadsideCannonsModel.CannonLevel.ToString();
 		CannonsForceDisplay.text = broadsideCannonsModel.CannonThrustForce.ToString();
-		CannonsDistanceDisplay.text = broadsideCannonsModel.CannonBallDistance.ToString();
+		CannonsDistanceDisplay.text = broadsideCannonsModel.CannonBallDistance.ToString ();
 	}
 
 	private void LevelChangeHandler(int newLevel)
@@ -47,13 +47,11 @@ public class BroadsideCannonsView : MonoBehaviour {
 	private void ForceChangeHandler(float newForce)
 	{
 		ChangeCannonThrustForce (newForce);
-		Debug.LogError (14);
 	}
 
 	private void DistanceChangeHandler(float newDistance)
 	{
 		ChangeCannonDistance (newDistance);
-		Debug.LogError (15);
 	}
 
 	void OnEnable(){

@@ -10,6 +10,7 @@ public class BroadsideCannon : MonoBehaviour { // using MonoBehaviour to access 
 
 	void Start(){
 		//cannonBallPrefab = Resources.Load ("Prefab-CannonBall") as CannonBall;
+
 	}
 
 	void OnEnable(){
@@ -43,7 +44,7 @@ public class BroadsideCannon : MonoBehaviour { // using MonoBehaviour to access 
 
 	public float CannonThrust{get; set;}
 
-	private float timeToDetonate;
+	private float timeToDetonate = 10f;
 
 	public void FireCannon(){
 		//Debug.Log ("FIRE!");
