@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class CannonsController : MonoBehaviour {
 
-	public BroadsideCannonsModel2 broadsideCannonsModel;
-
 	private float lastFireTimeLeft;
 	private float lastFireTimeRight;
 
 	private BroadsideCannon[] cannonBatteryLeft;
 	private BroadsideCannon[] cannonBatteryRight;
 
+	private BroadsideCannonsModel2 broadsideCannonsModel;
+
 	void Start(){
+		broadsideCannonsModel = new BroadsideCannonsModel2();
+
 		cannonBatteryLeft = GameObject.FindGameObjectWithTag ("CannonsBatteryLeft").GetComponentsInChildren<BroadsideCannon>();
 		cannonBatteryRight = GameObject.FindGameObjectWithTag ("CannonsBatteryRight").GetComponentsInChildren<BroadsideCannon>();
 
@@ -20,11 +22,101 @@ public class CannonsController : MonoBehaviour {
 		lastFireTimeRight = Time.time;
 	}
 
+	// ****************************************************************************************************************************************MODEL CONTROLLS START:
+
+	public int CannonLevel{
+		get {return broadsideCannonsModel.CannonLevel;}
+		set {
+			if (broadsideCannonsModel.CannonLevel == value) {
+				return;
+			} else if (value != 0 && value <=  broadsideCannonsModel.CannonMaxLevel) {
+				broadsideCannonsModel.CannonLevel = value;
+				if (OnCannonLevelChange != null) {
+					OnCannonLevelChange (value);
+				}
+			}
+		}
+	}
+	public delegate void OnCannonLevelChangeDelegate(int newVal);
+	public event OnCannonLevelChangeDelegate OnCannonLevelChange;
+
+	public void ChangeCannonLevel(float newLevel){
+		CannonLevel = (int)newLevel;
+	}
+
+	//===================================================================================================================================================================
+
+
+	public float CannonThrustForce{
+		get {return broadsideCannonsModel.CannonThrustForce;}
+		set {
+			if (value == broadsideCannonsModel.CannonThrustForce) {
+				return;
+			} else if (value > 0 && value <= 100) {
+				broadsideCannonsModel.CannonThrustForce = value;
+				if (OnCannonThrustLevelChange != null) {
+					OnCannonThrustLevelChange (value);
+				}
+			}
+		}
+	}
+	public delegate void OnCannonThrustLevelChangeDelegate(float newVal);
+	public event OnCannonThrustLevelChangeDelegate OnCannonThrustLevelChange;
+
+	public void ChangeCannonThrustForce(float newCannonForce){
+		CannonThrustForce = newCannonForce;
+	}
+
+	public float CannonsThrustMaxForce{
+		get {return broadsideCannonsModel.CannonsThrustMaxForce;}
+		set {
+			if (value == broadsideCannonsModel.CannonsThrustMaxForce) {
+				return;
+			} else if (value != 0) {
+				broadsideCannonsModel.CannonThrustForce = value;
+				if (OnCannonThrustMaxLevelChange != null) {
+					OnCannonThrustMaxLevelChange (value);
+				}
+			}
+		}
+	}
+	public delegate void OnCannonThrustMaxLevelChangeDelegate(float newVal);
+	public event OnCannonThrustMaxLevelChangeDelegate OnCannonThrustMaxLevelChange;
+
+	//======================================================================================================================================================================
+
+	public float CannonBallDistance{
+		get {return broadsideCannonsModel.CannonBallDistance;}
+		set {
+			if (broadsideCannonsModel.CannonBallDistance == value) {
+				return;
+			} else if (value != 0) { //CHECK FOR MAX DISTANCE AND MIN DISTANCE HERE
+				broadsideCannonsModel.CannonBallDistance = value;
+				if (OnCannonBallDistanceChange != null) {
+					OnCannonBallDistanceChange (value);
+				}
+			}
+		}
+	}
+	public delegate void OnCannonBallDistanceChangeDelegate (float newVal);
+	public event OnCannonBallDistanceChangeDelegate OnCannonBallDistanceChange;
+
+	public void ChangeCannonBallDistance(float newCannonBallDistance){
+		CannonBallDistance = newCannonBallDistance;
+	}
+
+
+	//======================================================================================================================================================================
+
+
+
+	// FIRE CANNONS START
+
 	public void FireCannonsLeft(){
 		if (isReadyToFire (0)) {
 			FireCannons (0);
 		}else{
-			Debug.Log ("Reloading for another " + TimeToReadyToFireLeft () + " seconds");
+			Debug.Log ("Reloading left for another " + TimeToReadyToFireLeft () + " seconds");
 		}
 	}
 
@@ -32,7 +124,7 @@ public class CannonsController : MonoBehaviour {
 		if (isReadyToFire (1)) {
 			FireCannons (1);
 		}else{
-			Debug.Log ("Reloading for another " + TimeToReadyToFireRight () + " seconds");
+			Debug.Log ("Reloading right for another " + TimeToReadyToFireRight () + " seconds");
 		}
 	}
 

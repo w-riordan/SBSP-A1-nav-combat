@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class BroadsideCannonsView : MonoBehaviour {
 
-	private CannonsController cannonsController;
-	public BroadsideCannonsModel2 broadsideCannonsModel;
+	public CannonsController cannonsController;
 
 	public Text CannonsLevelDisplay;
 	public Text ReloadLeftTimeDisplay;
@@ -15,54 +14,53 @@ public class BroadsideCannonsView : MonoBehaviour {
 	public Text CannonsDistanceDisplay;
 	public Text CannonsForceDisplay;
 
-	public void ChangeCannonLevel(float newLevel){
-		broadsideCannonsModel.CannonLevel = (int)newLevel;
-		CannonsLevelDisplay.text = newLevel.ToString();
-	}
-
-	public void ChangeCannonThrustForce(float newForce){
-		broadsideCannonsModel.CannonThrustForce = newForce;
-		CannonsForceDisplay.text = newForce.ToString();
-	}
-
-	public void ChangeCannonDistance(float newDistance){
-		broadsideCannonsModel.CannonBallDistance = newDistance;
-		CannonsDistanceDisplay.text = newDistance.ToString();
-	}
 
 	void Start(){
-		ReloadLeftTimeDisplay.text = "0";
-		ReloadRightTimeDisplay.text = "0";
+
 		cannonsController = FindObjectOfType<CannonsController> ();
-		CannonsLevelDisplay.text = broadsideCannonsModel.CannonLevel.ToString();
-		CannonsForceDisplay.text = broadsideCannonsModel.CannonThrustForce.ToString();
-		CannonsDistanceDisplay.text = broadsideCannonsModel.CannonBallDistance.ToString ();
+	
+		CannonsLevelDisplay.text = cannonsController.CannonLevel.ToString();
+		CannonsForceDisplay.text = cannonsController.CannonThrustForce.ToString()+"%";
+		CannonsDistanceDisplay.text = cannonsController.CannonBallDistance.ToString ();
 	}
+
 
 	private void LevelChangeHandler(int newLevel)
 	{
-		ChangeCannonLevel (newLevel);
+		ChangeCannonLevelDisplay (newLevel);
 	}
 
+	private void ChangeCannonLevelDisplay(float newLevel){
+		CannonsLevelDisplay.text = newLevel.ToString();
+	}
+
+
+	public void ChangeCannonThrustForceDisplay(float newForce){
+		CannonsForceDisplay.text = newForce.ToString () + "%";
+	}
 	private void ForceChangeHandler(float newForce)
 	{
-		ChangeCannonThrustForce (newForce);
+		ChangeCannonThrustForceDisplay (newForce);
 	}
+
 
 	private void DistanceChangeHandler(float newDistance)
 	{
-		ChangeCannonDistance (newDistance);
+		ChangeCannonDistanceDisplay (newDistance);
+	}
+	public void ChangeCannonDistanceDisplay(float newDistance){
+		CannonsDistanceDisplay.text = newDistance.ToString();
 	}
 
 	void OnEnable(){
-		broadsideCannonsModel.OnCannonLevelChange += LevelChangeHandler;
-		broadsideCannonsModel.OnCannonThrustLevelChange += ForceChangeHandler;
-		broadsideCannonsModel.OnCannonBallDistanceChange += DistanceChangeHandler;
+		cannonsController.OnCannonLevelChange += LevelChangeHandler;
+		cannonsController.OnCannonThrustLevelChange += ForceChangeHandler;
+		cannonsController.OnCannonBallDistanceChange += DistanceChangeHandler;
 	}
 	void OnDisable(){
-		broadsideCannonsModel.OnCannonLevelChange -= LevelChangeHandler;
-		broadsideCannonsModel.OnCannonThrustLevelChange -= ForceChangeHandler;
-		broadsideCannonsModel.OnCannonBallDistanceChange -= DistanceChangeHandler;
+		cannonsController.OnCannonLevelChange -= LevelChangeHandler;
+		cannonsController.OnCannonThrustLevelChange -= ForceChangeHandler;
+		cannonsController.OnCannonBallDistanceChange -= DistanceChangeHandler;
 	}
 
 	void Update(){
@@ -77,7 +75,7 @@ public class BroadsideCannonsView : MonoBehaviour {
 				ReloadLeftTimeDisplay.text = "Ready";
 			}
 		}
-		if (ReloadRightTimeDisplay.text != "Ready" || cannonsController.TimeToReadyToFireLeft () != 0) {
+		if (ReloadRightTimeDisplay.text != "Ready" || cannonsController.TimeToReadyToFireRight () != 0) {
 			if (cannonsController.TimeToReadyToFireRight () != 0) {
 				ReloadRightTimeDisplay.text = cannonsController.TimeToReadyToFireRight ().ToString ();
 			} else {

@@ -26,16 +26,17 @@ public class CannonBall : MonoBehaviour {
 	private int counter = 0;
 	private float deltaTime = 0f;
 
-	void Update(){
+	void Update(){/*
 		if (counter % 100 == 0) {
 			//Debug.LogError("timeToArm :" + timeToArm);
 			//Debug.LogError("timeToDetonate :" + timeToDetonate);
-			deltaTime = Time.time - startTime;
+			//deltaTime = Time.time - startTime;
 			//Debug.Log ("Delta time = " + deltaTime);
 			timeToArmLeft = timeToArm - deltaTime;
 			//Debug.Log ("timeToArmLeft :" + timeToArmLeft);
 		}
 		counter += 1;
+		*/
 	}
 
 	void OnCollisionEnter(Collision collision){
