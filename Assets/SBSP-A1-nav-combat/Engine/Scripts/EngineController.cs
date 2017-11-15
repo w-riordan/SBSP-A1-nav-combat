@@ -42,6 +42,7 @@ public class EngineController : MonoBehaviour {
 			engine.SetPower(0);
 			engine.SetIsOn(true);
 			engView.UpdateEngineState(engine.GetIsOn());
+
 		}
 		else
 		{
