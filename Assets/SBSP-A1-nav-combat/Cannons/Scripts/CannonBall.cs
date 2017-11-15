@@ -8,6 +8,7 @@ public class CannonBall : MonoBehaviour {
 	private float timeToArmLeft;
 	private float explosionRange;
 	private float baseDamage;
+	private float startTime = 0f;
 
 	// todo range of explosion - collision dettection
 	// inflict damage method
