@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class CannonBall : MonoBehaviour {
 	private float timeToArm = 0f;
-	private float timeToDetonate = 0f;
-	private float startTime;
+	private float timeToDetonate;
 	private float timeToArmLeft;
 	private float explosionRange;
 	private float baseDamage;
 
-	// range of explosion - collision dettection
+	// todo range of explosion - collision dettection
 	// inflict damage method
 	// timeToArm
-	// timeToDetonate
-	// Detonate()
 
 	public void setTimeToArm(float tta){timeToArm = tta;}
 	public void setTimeToDetonate(float ttd){timeToDetonate = ttd;}
@@ -22,9 +19,7 @@ public class CannonBall : MonoBehaviour {
 	public void setBaseDamage(float dmg){baseDamage = dmg;}
 
 	void Start(){
-		startTime = Time.time;
-		//Debug.LogError("timeToArm :" + timeToArm);
-		//Debug.LogError("timeToDetonate :" + timeToDetonate);
+		Invoke("Detonate", timeToDetonate);
 	}
 
 	private int counter = 0;
@@ -43,6 +38,11 @@ public class CannonBall : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision collision){
+		Detonate ();
+	}
+
+	public void Detonate(){
 		Debug.Log ("BOOM");
+		Destroy (gameObject);
 	}
 }
