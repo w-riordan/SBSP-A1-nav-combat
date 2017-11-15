@@ -3,9 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - CannonsBatteryRight
   - CannonsBatteryLeft
+=======
+<<<<<<< HEAD
+  tags:
+  - CannonsBatteryRight
+  - CannonsBatteryLeft
+=======
+  tags: []
+>>>>>>> upstream/dev
+>>>>>>> 676042ea09dd095ad30f56e0ba6bf183944cac04
   layers:
   - Default
   - TransparentFX

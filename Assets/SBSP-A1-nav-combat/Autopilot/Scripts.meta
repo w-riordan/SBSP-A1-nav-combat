@@ -1,6 +1,19 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: dd160a666c9981143b9085d12b8c2f90
 folderAsset: yes
+=======
+<<<<<<< HEAD
+guid: dd160a666c9981143b9085d12b8c2f90
+folderAsset: yes
+timeCreated: 1510671252
+=======
+guid: d1992a7f237107c4aaf0aa57744c543c
+folderAsset: yes
+timeCreated: 1510158511
+>>>>>>> upstream/dev
+licenseType: Free
+>>>>>>> 676042ea09dd095ad30f56e0ba6bf183944cac04
 DefaultImporter:
   userData: 
   assetBundleName: 

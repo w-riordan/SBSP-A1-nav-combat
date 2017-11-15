@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CannonsController : MonoBehaviour {
 
+	public BroadsideCannonsModel2 broadsideCannonsModel;
+
 	private float lastFireTimeLeft;
 	private float lastFireTimeRight;
 
@@ -73,7 +75,7 @@ public class CannonsController : MonoBehaviour {
 
 	public float TimeToReadyToFireLeft(){
 		float timeFromLastFire = Time.time - lastFireTimeLeft;
-		float timeToReadToFireValue = BroadsideCannonModel.CannonReloadSpeed - timeFromLastFire;
+		float timeToReadToFireValue = broadsideCannonsModel.CannonReloadSpeed - timeFromLastFire;
 		if (timeToReadToFireValue > 0f) {
 			return timeToReadToFireValue;
 		} else {
@@ -83,7 +85,7 @@ public class CannonsController : MonoBehaviour {
 
 	public float TimeToReadyToFireRight(){
 		float timeFromLastFire = Time.time - lastFireTimeRight;
-		float timeToReadToFireValue = BroadsideCannonModel.CannonReloadSpeed - timeFromLastFire;
+		float timeToReadToFireValue = broadsideCannonsModel.CannonReloadSpeed - timeFromLastFire;
 		if (timeToReadToFireValue > 0f) {
 			return timeToReadToFireValue;
 		} else {

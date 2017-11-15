@@ -1,5 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 63b5df19d578e7543af9f16736c98d53
+=======
+<<<<<<< HEAD
+guid: 63b5df19d578e7543af9f16736c98d53
+timeCreated: 1510671256
+=======
+guid: 231cc1e7a081a9e49b7c11274d514531
+timeCreated: 1510158512
+>>>>>>> upstream/dev
+licenseType: Free
+>>>>>>> 676042ea09dd095ad30f56e0ba6bf183944cac04
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
