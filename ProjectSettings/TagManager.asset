@@ -3,11 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - CannonsBatteryRight
   - CannonsBatteryLeft
   - Enemy
   - Asteroid
+=======
+  tags: []
+>>>>>>> upstream/dev
   layers:
   - Default
   - TransparentFX
