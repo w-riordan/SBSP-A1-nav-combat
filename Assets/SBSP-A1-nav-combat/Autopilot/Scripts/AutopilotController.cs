@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AutopilotController : MonoBehaviour {
 
-	public ThrusterController fr, fl, rr, rl;
+	public Button turnRightButton, turnLeftButton;
+	public Slider thrusterPowerSlider;
 
 	private AutopilotModel autopilot;
 	private Rigidbody rb;
-	private float rotationalVelocityChange = 0.3f;//TODO Need to calculate this
+	private float rotationalVelocityChange = 0,lastRotationalVelocity =0;
 	private bool turnRight = false;
 
 	// Use this for initialization
@@ -21,20 +23,33 @@ public class AutopilotController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (autopilot.isAutopilotOn ()) {
-			Debug.Log (" Rotational Velocity" +rb.angularVelocity.y);
-			float currentHeading = ClampTo360(transform.rotation.eulerAngles.y);
-			float distance = GetDistanceAndSetDirection (currentHeading);
-			float targetRotVel;
-			if (distance < 0.5f) {
-				targetRotVel = 0;
-			} else if (distance < 10) {
-				targetRotVel = 0.3f;
-			} else if (distance < 60) {
-				targetRotVel = 0.5f;
-			}else{
-				targetRotVel = 1.1f;
+
+			//Autopilot Heading Control
+			if (rotationalVelocityChange == 0) {
+				lastRotationalVelocity = rb.angularVelocity.y;
+				SetPower (100);
+				turnRightButton.onClick.Invoke ();
+				rotationalVelocityChange = -1f;
+			}else if(rotationalVelocityChange==-1f){
+				rotationalVelocityChange = Mathf.Abs (rb.angularVelocity.y - lastRotationalVelocity);
+			} else {
+				
+				float currentHeading = GetCurrentHeading ();
+				float distance = GetDistanceAndSetDirection (currentHeading);
+				float targetRotVel;
+				if (distance < 0.5f) {
+					targetRotVel = 0;
+				} else if (distance < 10) {
+					targetRotVel = 0.3f;
+				} else if (distance < 60) {
+					targetRotVel = 0.5f;
+				} else {
+					targetRotVel = 1.1f;
+				}
+				TurnShip (targetRotVel);
 			}
-			TurnShip (targetRotVel);
+
+			//Autopilot Speed Control
 		}
 	}
 	
@@ -71,20 +86,21 @@ public class AutopilotController : MonoBehaviour {
 		target = turnRight ? target : target * -1;
 		float change = target - rb.angularVelocity.y;
 		float power = (change / rotationalVelocityChange) < 0?(change / rotationalVelocityChange)*-1:(change / rotationalVelocityChange);
-		SetPower(power*100);
-		if (change > 0) {
-			fl.FireThruster ();
-			rr.FireThruster ();
-		} else {
-			fr.FireThruster ();
-			rl.FireThruster ();
+		if (power > 0.1f) {
+			SetPower (power * 100);
+			if (change > 0) {
+				turnRightButton.onClick.Invoke ();
+			} else {
+				turnLeftButton.onClick.Invoke ();
+			}
 		}
 	}
 
 	private void SetPower(float p){
-		fl.setPower (p);
-		fr.setPower (p);
-		rl.setPower (p);
-		rr.setPower (p);
+		thrusterPowerSlider.value = p;
+	}
+
+	public float GetCurrentHeading(){
+		return ClampTo360(transform.rotation.eulerAngles.y);
 	}
 }
