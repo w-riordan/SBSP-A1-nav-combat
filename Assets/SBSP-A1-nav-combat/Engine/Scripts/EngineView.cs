@@ -6,69 +6,55 @@ using UnityEngine.UI;
 public class EngineView : MonoBehaviour {
 
 
-	public Text powerText;
-	public Text engineStateText;
-	public Slider accSlider;
-	public Toggle toggle;
-	public Text toggleText;
+    public Text powerText;
+    public Text engineStateText;
+    public Button onEngineButton;
+    public Button offEngineButton;
+    public Slider accSlider;
 
-	private EngineController engineCont;
+    private EngineController engineCont;
 
 
-	private void Awake()
-	{
-		engineCont = GetComponent<EngineController>();
-	}
+    private void Awake()
+    {
+        engineCont = GetComponent<EngineController>();
+    }
 
-	private void Start()
-	{
-		toggle.isOn = false;
-		toggle.onValueChanged.AddListener(delegate { ToggleButtonEngine(); });
-		accSlider.onValueChanged.AddListener(delegate { engineCont.Accelerate(accSlider); });
-		accSlider.interactable = false;
-	}
+    private void Start()
+    {
 
-	//update text message for the power value
-	public void UpdatePower(float power)
-	{
-		string powerMessage = "Power : " + power;
+        onEngineButton.onClick.AddListener(engineCont.TurnOnEngine);
+        offEngineButton.onClick.AddListener(engineCont.TurnOffEngine);
+        accSlider.onValueChanged.AddListener(delegate { engineCont.Accelerate(accSlider); });
+    }
 
-		//update UI on the screen with the message
-		powerText.text = powerMessage;
+    //update text message for the power value
+    public void UpdatePower(float power)
+    {
+        string powerMessage = "Power : " + power;
 
-	}
+        //update UI on the screen with the message
+        powerText.text = powerMessage;
 
-	public void UpdateEngineState(bool engineState)
-	{
-		string engineStateString;
+    }
 
-		if (engineState)
-		{
-			engineStateString = "ON";
-			accSlider.interactable = true;
+    public void UpdateEngineState(bool engineState)
+    {
+        string engineStateString;
 
-		}
-		else
-		{
-			engineStateString = "OFF";
-			powerText.text = "Power : 0";
-			accSlider.value = 0;
-			accSlider.interactable = false;
-		}
+        if (engineState)
+        {
+            engineStateString = "ON";
+        }
+        else
+        {
+            engineStateString = "OFF";
+            powerText.text = "Power : 0";
+        }
 
-		string engineStateMessage = "Engine : " + engineStateString;
+        string engineStateMessage = "Engine : " + engineStateString;
 
-		engineStateText.text = engineStateMessage;
-	}
-
-	public void ToggleButtonEngine(){
-		if (toggle.isOn) {
-			toggleText.text = "ON";
-			engineCont.TurnOnEngine();
-		} else {
-			toggleText.text = "OFF";
-			engineCont.TurnOffEngine();
-		}
-	}
+        engineStateText.text = engineStateMessage;
+    }
 
 }
