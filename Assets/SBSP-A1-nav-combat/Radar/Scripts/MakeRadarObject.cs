@@ -9,9 +9,14 @@ public class MakeRadarObject : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Radar.RegisterRadarObject(this.gameObject, image);
-    }
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 
-    void OnDestroy()
+    void OnDostroy()
     {
         Radar.RemoveRadarObject(this.gameObject); 
     }
