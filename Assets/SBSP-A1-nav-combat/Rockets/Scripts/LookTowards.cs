@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class LookAt : MonoBehaviour {
+public class LookTowards : MonoBehaviour {
 	public Transform target;
 	public float speed = 5f;
 	// Update is called once per frame

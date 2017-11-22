@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy Kamikaze Ship
+  - CannonsBatteryRight
+  - CannonsBatteryLeft
+  - ship
+  - Enemy
+  - Asteroid
   layers:
   - Default
   - TransparentFX
