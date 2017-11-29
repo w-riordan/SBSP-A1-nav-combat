@@ -12,9 +12,11 @@ public class CannonsController : MonoBehaviour {
 
 	private BroadsideCannonsModel2 broadsideCannonsModel;
 
-	void Start(){
-		broadsideCannonsModel = new BroadsideCannonsModel2();
+	void Awake(){
+		broadsideCannonsModel = new BroadsideCannonsModel2 ();
+	}
 
+	void Start(){
 		cannonBatteryLeft = GameObject.FindGameObjectWithTag ("CannonsBatteryLeft").GetComponentsInChildren<BroadsideCannon>();
 		cannonBatteryRight = GameObject.FindGameObjectWithTag ("CannonsBatteryRight").GetComponentsInChildren<BroadsideCannon>();
 
