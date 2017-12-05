@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
-
+using System.Collections;
 
 public class ShieldController : MonoBehaviour
 {
@@ -16,6 +16,7 @@ public class ShieldController : MonoBehaviour
         sView.UpdateShieldStatus(shield.GetIsOn());
         sView.UpdateShieldHealth(shield.GetShieldHealth(), shield.GetShieldStrength());
         sView.UpdateShieldStrength(shield.GetShieldStrength());
+        StartCoroutine(RegenShield());
         
     }
 
@@ -31,11 +32,11 @@ public class ShieldController : MonoBehaviour
         {
             shield.SetShieldStrength((StrengthSlider.value));
             sView.UpdateShieldStrength(shield.GetShieldStrength());
-            StrengthSlider.gameObject.SetActive(true); // allow to move slider if shield active
+            StrengthSlider.interactable = true;
         }
         else
         {
-            StrengthSlider.gameObject.SetActive(false); // can't move slider if shield inactive
+            StrengthSlider.interactable = false; // can't move slider if shield inactive
             Debug.Log("Shield is not on, can't change power.");
         }
     }
@@ -71,12 +72,18 @@ public class ShieldController : MonoBehaviour
 
     }
 
-    public void RegenShield (bool WasDamaged)
+    IEnumerator RegenShield()
     {
-        if(shield.GetWasDamaged())
+        while(true) // do forever while shield health less than 100
         {
-            Debug.Log("Regeneration happens after 5 seconds");
-            // more to be figured out here
+            if(shield.ShieldHealth < 500) // if shield health is less than 100
+            {
+                shield.ShieldHealth += 1; // increase shield health
+                yield return new WaitForSeconds(1); // wait one second, regen again
+            } else // if it is more than 500 just return null 
+            {
+                yield return null;
+            }
         }
     }
     void OnCollisionEnter(Collision col) // on collision, depending on tag type, apply damage to health
@@ -86,14 +93,18 @@ public class ShieldController : MonoBehaviour
             shield.ShieldHealth = shield.ShieldHealth - 100; 
             Debug.Log("Hit by a cannon. -100 health.");
             shield.SetWasDamaged(true);
-            Invoke("RegenShield", 5);// run regenshield method after 5 seconds
         }
         if(col.gameObject.tag == "Missile")
         {
             shield.ShieldHealth = shield.ShieldHealth - 150;
             Debug.Log("Hit by a missile. -150 health");
             shield.SetWasDamaged(true);
-            Invoke("RegenShield", 5); // run regenshield method after 5 seconds
         }
+        if (col.gameObject.tag == "enemyShip")
+        {
+            Debug.Log("Enemy ship collided. -500 health");
+        }
+
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿public class ShieldModel
 {
     // declare vars
-    public float ShieldHealth = 100;
+    public float ShieldHealth = 500;
     public float ShieldStrength = 0;
     public bool isOn = false;
     public bool WasDamaged = false;

@@ -13,9 +13,10 @@ public class EnemyKamikazeShipScript : MonoBehaviour {
 
 	}
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "ship")
+    void OnCollisonEnter(Collision collision)
+	{	
+		Debug.Log (1);
+		if(gameObject.CompareTag("ship"))
         {
             Destroy(collision.gameObject);
             Debug.Log("Exploded enemy ship!!!");
@@ -24,7 +25,7 @@ public class EnemyKamikazeShipScript : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         var distance = Vector3.Distance(ship.transform.position, transform.position);
-        if (distance < 200)
+        if (distance < 2000)
         {
             var d = ship.transform.position - transform.position;
             d.Normalize();
